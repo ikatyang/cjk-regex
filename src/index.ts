@@ -36,12 +36,13 @@ const character_ranges: Range[] = [
   [0xf900, 0xfaff],
 ];
 
-type Range = number | [number, number];
+type Range = [number, number];
 
 function get_regex() {
   return create_regex(character_ranges.concat(punctuation_ranges));
 }
 
+// istanbul ignore next
 // tslint:disable-next-line:no-namespace
 namespace get_regex {
   export function punctuations() {
@@ -60,9 +61,7 @@ function create_regex(ranges: Range[]) {
 }
 
 function get_bracket_content(range: Range) {
-  return typeof range === 'number'
-    ? get_escaped_unicode(range)
-    : `${get_escaped_unicode(range[0])}-${get_escaped_unicode(range[1])}`;
+  return `${get_escaped_unicode(range[0])}-${get_escaped_unicode(range[1])}`;
 }
 
 function get_escaped_unicode(num: number) {
