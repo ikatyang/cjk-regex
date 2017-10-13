@@ -1,6 +1,6 @@
 {
   "name": "cjk-regex",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "regular expression for matching CJK texts",
   "keywords": [
     "cjk",
