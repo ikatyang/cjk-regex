@@ -23,17 +23,17 @@ yarn add cjk-regex
 ```js
 const get_cjk_regex = require("cjk-regex");
 
-"a".test(get_cjk_regex()); //=> false
-"。".test(get_cjk_regex()); //=> true
-"中".test(get_cjk_regex()); //=> true
+get_cjk_regex().test("a"); //=> false
+get_cjk_regex().test("。"); //=> true
+get_cjk_regex().test("中"); //=> true
 
-"a".test(get_cjk_regex.characters()); //=> false
-"。".test(get_cjk_regex.characters()); //=> false
-"中".test(get_cjk_regex.characters()); //=> true
+get_cjk_regex.characters().test("a"); //=> false
+get_cjk_regex.characters().test("。"); //=> false
+get_cjk_regex.characters().test("中"); //=> true
 
-"a".test(get_cjk_regex.punctuations()); //=> false
-"。".test(get_cjk_regex.punctuations()); //=> true
-"中".test(get_cjk_regex.punctuations()); //=> false
+get_cjk_regex.punctuations().test("a"); //=> false
+get_cjk_regex.punctuations().test("。"); //=> true
+get_cjk_regex.punctuations().test("中"); //=> false
 ```
 
 ## Development
