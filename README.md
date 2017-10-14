@@ -4,7 +4,7 @@
 [![build](https://img.shields.io/travis/ikatyang/cjk-regex/master.svg)](https://travis-ci.org/ikatyang/cjk-regex/builds)
 [![coverage](https://img.shields.io/codecov/c/github/ikatyang/cjk-regex/master.svg)](https://codecov.io/gh/ikatyang/cjk-regex)
 
-regular expression for matching CJK texts
+regular expression for matching CJK text
 
 [Changelog](https://github.com/ikatyang/cjk-regex/blob/master/CHANGELOG.md)
 
