@@ -1,3 +1,5 @@
+type Range = [number, number];
+
 const punctuation_ranges: Range[] = [
   // http://www.unicode.org/charts/PDF/U3000.pdf CJK Symbols and Punctuation
   [0x3000, 0x303f],
@@ -36,22 +38,19 @@ const character_ranges: Range[] = [
   [0xf900, 0xfaff],
 ];
 
-type Range = [number, number];
+const mixed_ranges = character_ranges.concat(punctuation_ranges);
 
 function get_regex() {
-  return create_regex(character_ranges.concat(punctuation_ranges));
+  return create_regex(mixed_ranges);
 }
 
-// istanbul ignore next
-// tslint:disable-next-line:no-namespace
-namespace get_regex {
-  export function punctuations() {
-    return create_regex(punctuation_ranges);
-  }
-  export function characters() {
-    return create_regex(character_ranges);
-  }
+declare namespace get_regex {
+  function characters(): RegExp;
+  function punctuations(): RegExp;
 }
+
+get_regex.characters = () => create_regex(character_ranges);
+get_regex.punctuations = () => create_regex(punctuation_ranges);
 
 function create_regex(ranges: Range[]) {
   return new RegExp(
