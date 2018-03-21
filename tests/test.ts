@@ -14,6 +14,7 @@ test('letters', () => {
   expect('〤').toMatch(cjk_regex.letters().toRegExp());
   expect('𛀂').toMatch(cjk_regex.letters().toRegExp());
   expect('ｦ').toMatch(cjk_regex.letters().toRegExp());
+  expect('々').toMatch(cjk_regex.letters().toRegExp());
 });
 
 test('punctuations', () => {
@@ -30,6 +31,7 @@ test('punctuations', () => {
   expect('〤').not.toMatch(cjk_regex.punctuations().toRegExp());
   expect('𛀂').not.toMatch(cjk_regex.punctuations().toRegExp());
   expect('ｦ').not.toMatch(cjk_regex.punctuations().toRegExp());
+  expect('々').not.toMatch(cjk_regex.punctuations().toRegExp());
 });
 
 test('mixed', () => {
@@ -46,4 +48,5 @@ test('mixed', () => {
   expect('〤').toMatch(cjk_regex().toRegExp());
   expect('𛀂').toMatch(cjk_regex().toRegExp());
   expect('ｦ').toMatch(cjk_regex().toRegExp());
+  expect('々').toMatch(cjk_regex().toRegExp());
 });

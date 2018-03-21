@@ -3,7 +3,12 @@ import unicode = require('unicode-regex');
 
 const cjk_letters = unicode({
   Script: ['Han', 'Katakana', 'Hiragana', 'Hangul', 'Bopomofo'],
-  General_Category: ['Other_Letter', 'Letter_Number', 'Other_Symbol'],
+  General_Category: [
+    'Other_Letter',
+    'Letter_Number',
+    'Other_Symbol',
+    'Modifier_Letter',
+  ],
 });
 
 const cjk_punctuations = unicode({
