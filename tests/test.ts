@@ -38,12 +38,12 @@ test('mixed', () => {
   expect('。').toMatch(cjk_regex().toRegExp());
   expect('中').toMatch(cjk_regex().toRegExp());
   expect('ㄅ').toMatch(cjk_regex().toRegExp());
-  expect('𬉼').toMatch(cjk_regex().toRegExp())
-  expect('あ').toMatch(cjk_regex().toRegExp())
-  expect('ㅂ').toMatch(cjk_regex().toRegExp())
-  expect('가').toMatch(cjk_regex().toRegExp())
-  expect('ퟔ').toMatch(cjk_regex().toRegExp())
-  expect('〤').toMatch(cjk_regex().toRegExp())
-  expect('𛀂').toMatch(cjk_regex().toRegExp())
-  expect('ｦ').toMatch(cjk_regex().toRegExp())
+  expect('𬉼').toMatch(cjk_regex().toRegExp());
+  expect('あ').toMatch(cjk_regex().toRegExp());
+  expect('ㅂ').toMatch(cjk_regex().toRegExp());
+  expect('가').toMatch(cjk_regex().toRegExp());
+  expect('ퟔ').toMatch(cjk_regex().toRegExp());
+  expect('〤').toMatch(cjk_regex().toRegExp());
+  expect('𛀂').toMatch(cjk_regex().toRegExp());
+  expect('ｦ').toMatch(cjk_regex().toRegExp());
 });

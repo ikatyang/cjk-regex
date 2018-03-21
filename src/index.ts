@@ -1,5 +1,5 @@
-import unicode = require('unicode-regex');
 import { charset, Charset } from 'regexp-util';
+import unicode = require('unicode-regex');
 
 const cjk_letters = unicode({
   Script: ['Han', 'Katakana', 'Hiragana', 'Hangul', 'Bopomofo'],
@@ -16,7 +16,7 @@ const cjk_punctuations = unicode({
   ],
 }).subtract(cjk_letters);
 
-const cjk_all = charset(cjk_letters, cjk_punctuations);
+const cjk_all: Charset = charset(cjk_letters, cjk_punctuations);
 
 function cjk_regex() {
   return charset(cjk_all);
