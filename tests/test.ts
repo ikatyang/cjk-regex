@@ -1,52 +1,48 @@
 import cjk_regex = require('../src/index');
 
-test('letters', () => {
-  expect('.').not.toMatch(cjk_regex.letters().toRegExp());
-  expect('a').not.toMatch(cjk_regex.letters().toRegExp());
-  expect('。').not.toMatch(cjk_regex.letters().toRegExp());
-  expect('中').toMatch(cjk_regex.letters().toRegExp());
-  expect('ㄅ').toMatch(cjk_regex.letters().toRegExp());
-  expect('𬉼').toMatch(cjk_regex.letters().toRegExp());
-  expect('あ').toMatch(cjk_regex.letters().toRegExp());
-  expect('ㅂ').toMatch(cjk_regex.letters().toRegExp());
-  expect('가').toMatch(cjk_regex.letters().toRegExp());
-  expect('ퟔ').toMatch(cjk_regex.letters().toRegExp());
-  expect('〤').toMatch(cjk_regex.letters().toRegExp());
-  expect('𛀂').toMatch(cjk_regex.letters().toRegExp());
-  expect('ｦ').toMatch(cjk_regex.letters().toRegExp());
-  expect('々').toMatch(cjk_regex.letters().toRegExp());
-});
+const test_cases: {
+  [char: string]: 'non-cjk' | 'cjk-letter' | 'cjk-punctuation';
+} = /* prettier-ignore */ {
+  '.': 'non-cjk',
+  'a': 'non-cjk',
+  '。': 'cjk-punctuation',
+  '中': 'cjk-letter',
+  'ㄅ': 'cjk-letter',
+  '𬉼': 'cjk-letter',
+  'あ': 'cjk-letter',
+  'ㅂ': 'cjk-letter',
+  '가': 'cjk-letter',
+  'ퟔ': 'cjk-letter',
+  '〤': 'cjk-letter',
+  '𛀂': 'cjk-letter',
+  'ｦ': 'cjk-letter',
+  '々': 'cjk-letter',
+};
 
-test('punctuations', () => {
-  expect('.').not.toMatch(cjk_regex.punctuations().toRegExp());
-  expect('a').not.toMatch(cjk_regex.punctuations().toRegExp());
-  expect('。').toMatch(cjk_regex.punctuations().toRegExp());
-  expect('中').not.toMatch(cjk_regex.punctuations().toRegExp());
-  expect('ㄅ').not.toMatch(cjk_regex.punctuations().toRegExp());
-  expect('𬉼').not.toMatch(cjk_regex.punctuations().toRegExp());
-  expect('あ').not.toMatch(cjk_regex.punctuations().toRegExp());
-  expect('ㅂ').not.toMatch(cjk_regex.punctuations().toRegExp());
-  expect('가').not.toMatch(cjk_regex.punctuations().toRegExp());
-  expect('ퟔ').not.toMatch(cjk_regex.punctuations().toRegExp());
-  expect('〤').not.toMatch(cjk_regex.punctuations().toRegExp());
-  expect('𛀂').not.toMatch(cjk_regex.punctuations().toRegExp());
-  expect('ｦ').not.toMatch(cjk_regex.punctuations().toRegExp());
-  expect('々').not.toMatch(cjk_regex.punctuations().toRegExp());
-});
-
-test('mixed', () => {
-  expect('.').not.toMatch(cjk_regex().toRegExp());
-  expect('a').not.toMatch(cjk_regex().toRegExp());
-  expect('。').toMatch(cjk_regex().toRegExp());
-  expect('中').toMatch(cjk_regex().toRegExp());
-  expect('ㄅ').toMatch(cjk_regex().toRegExp());
-  expect('𬉼').toMatch(cjk_regex().toRegExp());
-  expect('あ').toMatch(cjk_regex().toRegExp());
-  expect('ㅂ').toMatch(cjk_regex().toRegExp());
-  expect('가').toMatch(cjk_regex().toRegExp());
-  expect('ퟔ').toMatch(cjk_regex().toRegExp());
-  expect('〤').toMatch(cjk_regex().toRegExp());
-  expect('𛀂').toMatch(cjk_regex().toRegExp());
-  expect('ｦ').toMatch(cjk_regex().toRegExp());
-  expect('々').toMatch(cjk_regex().toRegExp());
+Object.keys(test_cases).forEach(character => {
+  const category = test_cases[character];
+  const title = `"${character}" (0x${character
+    .charCodeAt(0)
+    .toString(16)}) is ${category}`;
+  test(title, () => {
+    switch (category) {
+      case 'non-cjk':
+        expect(character).not.toMatch(cjk_regex().toRegExp());
+        expect(character).not.toMatch(cjk_regex.letters().toRegExp());
+        expect(character).not.toMatch(cjk_regex.punctuations().toRegExp());
+        break;
+      case 'cjk-letter':
+        expect(character).toMatch(cjk_regex().toRegExp());
+        expect(character).toMatch(cjk_regex.letters().toRegExp());
+        expect(character).not.toMatch(cjk_regex.punctuations().toRegExp());
+        break;
+      case 'cjk-punctuation':
+        expect(character).toMatch(cjk_regex().toRegExp());
+        expect(character).not.toMatch(cjk_regex.letters().toRegExp());
+        expect(character).toMatch(cjk_regex.punctuations().toRegExp());
+        break;
+      default:
+        throw new Error(`Unexpected category "${category}"`);
+    }
+  });
 });
