@@ -21,20 +21,25 @@ yarn add cjk-regex
 ## Usage
 
 ```js
-const get_cjk_regex = require("cjk-regex");
+const cjk = require("cjk-regex");
 
-get_cjk_regex().test("a"); //=> false
-get_cjk_regex().test("。"); //=> true
-get_cjk_regex().test("中"); //=> true
+const cjk_charset = cjk();
+cjk_charset.toRegExp().test("a"); //=> false
+cjk_charset.toRegExp().test("。"); //=> true
+cjk_charset.toRegExp().test("中"); //=> true
 
-get_cjk_regex.characters().test("a"); //=> false
-get_cjk_regex.characters().test("。"); //=> false
-get_cjk_regex.characters().test("中"); //=> true
+const cjk_letter_charset = cjk.letters();
+cjk_letter_charset.toRegExp().test("a"); //=> false
+cjk_letter_charset.toRegExp().test("。"); //=> false
+cjk_letter_charset.toRegExp().test("中"); //=> true
 
-get_cjk_regex.punctuations().test("a"); //=> false
-get_cjk_regex.punctuations().test("。"); //=> true
-get_cjk_regex.punctuations().test("中"); //=> false
+const cjk_punctuaion_charset = cjk.punctuations();
+cjk_punctuaion_charset.toRegExp().test("a"); //=> false
+cjk_punctuaion_charset.toRegExp().test("。"); //=> true
+cjk_punctuaion_charset.toRegExp().test("中"); //=> false
 ```
+
+Returns a [Charset](https://github.com/ikatyang/regexp-util#charset).
 
 ## Development
 
