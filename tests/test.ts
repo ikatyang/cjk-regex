@@ -1,40 +1,49 @@
 import cjk_regex = require('../src/index');
 
-test('characters', () => {
-  expect('a').not.toMatch(cjk_regex.characters());
-  expect('。').not.toMatch(cjk_regex.characters());
-  expect('中').toMatch(cjk_regex.characters());
-  expect('𬉼').toMatch(cjk_regex.characters());
-  expect('あ').toMatch(cjk_regex.characters());
-  expect('ㅂ').toMatch(cjk_regex.characters());
-  expect('가').toMatch(cjk_regex.characters());
-  expect('ퟔ').toMatch(cjk_regex.characters());
-  expect('〤').toMatch(cjk_regex.characters());
-  expect('𛀂').toMatch(cjk_regex.characters());
+test('letters', () => {
+  expect('.').not.toMatch(cjk_regex.letters().toRegExp());
+  expect('a').not.toMatch(cjk_regex.letters().toRegExp());
+  expect('。').not.toMatch(cjk_regex.letters().toRegExp());
+  expect('中').toMatch(cjk_regex.letters().toRegExp());
+  expect('ㄅ').toMatch(cjk_regex.letters().toRegExp());
+  expect('𬉼').toMatch(cjk_regex.letters().toRegExp());
+  expect('あ').toMatch(cjk_regex.letters().toRegExp());
+  expect('ㅂ').toMatch(cjk_regex.letters().toRegExp());
+  expect('가').toMatch(cjk_regex.letters().toRegExp());
+  expect('ퟔ').toMatch(cjk_regex.letters().toRegExp());
+  expect('〤').toMatch(cjk_regex.letters().toRegExp());
+  expect('𛀂').toMatch(cjk_regex.letters().toRegExp());
+  expect('ｦ').toMatch(cjk_regex.letters().toRegExp());
 });
 
 test('punctuations', () => {
-  expect('a').not.toMatch(cjk_regex.punctuations());
-  expect('。').toMatch(cjk_regex.punctuations());
-  expect('中').not.toMatch(cjk_regex.punctuations());
-  expect('𬉼').not.toMatch(cjk_regex.punctuations());
-  expect('あ').not.toMatch(cjk_regex.punctuations());
-  expect('ㅂ').not.toMatch(cjk_regex.punctuations());
-  expect('가').not.toMatch(cjk_regex.punctuations());
-  expect('ퟔ').not.toMatch(cjk_regex.punctuations());
-  expect('〤').not.toMatch(cjk_regex.punctuations());
-  expect('𛀂').not.toMatch(cjk_regex.punctuations());
+  expect('.').not.toMatch(cjk_regex.punctuations().toRegExp());
+  expect('a').not.toMatch(cjk_regex.punctuations().toRegExp());
+  expect('。').toMatch(cjk_regex.punctuations().toRegExp());
+  expect('中').not.toMatch(cjk_regex.punctuations().toRegExp());
+  expect('ㄅ').not.toMatch(cjk_regex.punctuations().toRegExp());
+  expect('𬉼').not.toMatch(cjk_regex.punctuations().toRegExp());
+  expect('あ').not.toMatch(cjk_regex.punctuations().toRegExp());
+  expect('ㅂ').not.toMatch(cjk_regex.punctuations().toRegExp());
+  expect('가').not.toMatch(cjk_regex.punctuations().toRegExp());
+  expect('ퟔ').not.toMatch(cjk_regex.punctuations().toRegExp());
+  expect('〤').not.toMatch(cjk_regex.punctuations().toRegExp());
+  expect('𛀂').not.toMatch(cjk_regex.punctuations().toRegExp());
+  expect('ｦ').not.toMatch(cjk_regex.punctuations().toRegExp());
 });
 
 test('mixed', () => {
-  expect('a').not.toMatch(cjk_regex());
-  expect('。').toMatch(cjk_regex());
-  expect('中').toMatch(cjk_regex());
-  expect('𬉼').toMatch(cjk_regex())
-  expect('あ').toMatch(cjk_regex())
-  expect('ㅂ').toMatch(cjk_regex())
-  expect('가').toMatch(cjk_regex())
-  expect('ퟔ').toMatch(cjk_regex())
-  expect('〤').toMatch(cjk_regex())
-  expect('𛀂').toMatch(cjk_regex())
+  expect('.').not.toMatch(cjk_regex().toRegExp());
+  expect('a').not.toMatch(cjk_regex().toRegExp());
+  expect('。').toMatch(cjk_regex().toRegExp());
+  expect('中').toMatch(cjk_regex().toRegExp());
+  expect('ㄅ').toMatch(cjk_regex().toRegExp());
+  expect('𬉼').toMatch(cjk_regex().toRegExp())
+  expect('あ').toMatch(cjk_regex().toRegExp())
+  expect('ㅂ').toMatch(cjk_regex().toRegExp())
+  expect('가').toMatch(cjk_regex().toRegExp())
+  expect('ퟔ').toMatch(cjk_regex().toRegExp())
+  expect('〤').toMatch(cjk_regex().toRegExp())
+  expect('𛀂').toMatch(cjk_regex().toRegExp())
+  expect('ｦ').toMatch(cjk_regex().toRegExp())
 });

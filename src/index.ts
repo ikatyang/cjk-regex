@@ -1,50 +1,34 @@
 import unicode = require('unicode-regex');
+import { charset, Charset } from 'regexp-util';
 
-const punctuation_charset = unicode({
+const cjk_letters = unicode({
+  Script: ['Han', 'Katakana', 'Hiragana', 'Hangul', 'Bopomofo'],
+  General_Category: ['Other_Letter', 'Letter_Number', 'Other_Symbol'],
+});
+
+const cjk_punctuations = unicode({
   Block: [
     'CJK_Symbols_And_Punctuation',
-    'Hangul_Syllables',
     'Vertical_Forms',
     'CJK_Compatibility_Forms',
     'Small_Form_Variants',
     'Halfwidth_And_Fullwidth_Forms',
   ],
-});
+}).subtract(cjk_letters);
 
-const character_charset = unicode({
-  Block: [
-    'Hangul_Jamo',
-    'CJK_Radicals_Supplement',
-    'Kangxi_Radicals',
-    'Hiragana',
-    'Katakana',
-    'Bopomofo',
-    'Hangul_Compatibility_Jamo',
-    'Enclosed_CJK_Letters_And_Months',
-    'CJK_Compatibility',
-    'CJK_Unified_Ideographs_Extension_A',
-    'CJK_Unified_Ideographs',
-    'Hangul_Jamo_Extended_A',
-    'CJK_Compatibility_Ideographs',
-  ],
-});
+const cjk_all = charset(cjk_letters, cjk_punctuations);
 
-const mixed_charset = character_charset.union(punctuation_charset);
-
-function get_regex() {
-  return create_regex(mixed_charset);
+function cjk_regex() {
+  return charset(cjk_all);
 }
 
-declare namespace get_regex {
-  function characters(): RegExp;
-  function punctuations(): RegExp;
+namespace cjk_regex {
+  export function letters() {
+    return charset(cjk_letters);
+  }
+  export function punctuations() {
+    return charset(cjk_punctuations);
+  }
 }
 
-get_regex.characters = () => create_regex(character_charset);
-get_regex.punctuations = () => create_regex(punctuation_charset);
-
-function create_regex(charset: typeof mixed_charset) {
-  return charset.toRegExp('g');
-}
-
-export = get_regex;
+export = cjk_regex;
