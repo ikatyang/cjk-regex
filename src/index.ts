@@ -16,19 +16,17 @@ const cjk_punctuations = unicode({
   ],
 }).subtract(cjk_letters);
 
-const cjk_all: Charset = charset(cjk_letters, cjk_punctuations);
+const cjk_all = charset(cjk_letters, cjk_punctuations);
 
 function cjk_regex() {
   return charset(cjk_all);
 }
 
-namespace cjk_regex {
-  export function letters() {
-    return charset(cjk_letters);
-  }
-  export function punctuations() {
-    return charset(cjk_punctuations);
-  }
+declare namespace cjk_regex {
+  function letters(): Charset;
+  function punctuations(): Charset;
 }
+cjk_regex.letters = () => charset(cjk_letters);
+cjk_regex.punctuations = () => charset(cjk_punctuations);
 
 export = cjk_regex;
