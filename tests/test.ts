@@ -1,25 +1,48 @@
 import cjk_regex = require('../src/index');
 
-test('characters', () => {
-  expect('a').not.toMatch(cjk_regex.characters());
-  expect('。').not.toMatch(cjk_regex.characters());
-  expect('中').toMatch(cjk_regex.characters());
-  expect('あ').toMatch(cjk_regex.characters());
-  expect('ㅂ').toMatch(cjk_regex.characters());
-});
+const test_cases: {
+  [char: string]: 'non-cjk' | 'cjk-letter' | 'cjk-punctuation';
+} = /* prettier-ignore */ {
+  '.': 'non-cjk',
+  'a': 'non-cjk',
+  '。': 'cjk-punctuation',
+  '中': 'cjk-letter',
+  'ㄅ': 'cjk-letter',
+  '𬉼': 'cjk-letter',
+  'あ': 'cjk-letter',
+  'ㅂ': 'cjk-letter',
+  '가': 'cjk-letter',
+  'ퟔ': 'cjk-letter',
+  '〤': 'cjk-letter',
+  '𛀂': 'cjk-letter',
+  'ｦ': 'cjk-letter',
+  '々': 'cjk-letter',
+};
 
-test('punctuations', () => {
-  expect('a').not.toMatch(cjk_regex.punctuations());
-  expect('。').toMatch(cjk_regex.punctuations());
-  expect('中').not.toMatch(cjk_regex.punctuations());
-  expect('あ').not.toMatch(cjk_regex.punctuations());
-  expect('ㅂ').not.toMatch(cjk_regex.punctuations());
-});
-
-test('mixed', () => {
-  expect('a').not.toMatch(cjk_regex());
-  expect('。').toMatch(cjk_regex());
-  expect('中').toMatch(cjk_regex());
-  expect('あ').toMatch(cjk_regex());
-  expect('ㅂ').toMatch(cjk_regex());
+Object.keys(test_cases).forEach(character => {
+  const category = test_cases[character];
+  const title = `"${character}" (0x${character
+    .charCodeAt(0)
+    .toString(16)}) is ${category}`;
+  test(title, () => {
+    switch (category) {
+      case 'non-cjk':
+        expect(character).not.toMatch(cjk_regex().toRegExp());
+        expect(character).not.toMatch(cjk_regex.letters().toRegExp());
+        expect(character).not.toMatch(cjk_regex.punctuations().toRegExp());
+        break;
+      case 'cjk-letter':
+        expect(character).toMatch(cjk_regex().toRegExp());
+        expect(character).toMatch(cjk_regex.letters().toRegExp());
+        expect(character).not.toMatch(cjk_regex.punctuations().toRegExp());
+        break;
+      case 'cjk-punctuation':
+        expect(character).toMatch(cjk_regex().toRegExp());
+        expect(character).not.toMatch(cjk_regex.letters().toRegExp());
+        expect(character).toMatch(cjk_regex.punctuations().toRegExp());
+        break;
+      default:
+        throw new Error(`Unexpected category "${category}"`);
+    }
+  });
 });

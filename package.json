@@ -25,6 +25,7 @@
     "release": "standard-version"
   },
   "dependencies": {
+    "regexp-util": "^1.2.1",
     "unicode-regex": "^2.0.0"
   },
   "devDependencies": {

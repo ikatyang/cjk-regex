@@ -2998,9 +2998,9 @@ regex-not@^1.0.0, regex-not@^1.0.2:
     extend-shallow "^3.0.2"
     safe-regex "^1.1.0"
 
-regexp-util@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/regexp-util/-/regexp-util-1.2.0.tgz#427e8573ac8874ff539ecb4696c79725ae9bebfd"
+regexp-util@^1.2.0, regexp-util@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/regexp-util/-/regexp-util-1.2.1.tgz#fe354ac4e6e7694abac4dea16c0bc55c096ad84e"
   dependencies:
     tslib "^1.9.0"
 
