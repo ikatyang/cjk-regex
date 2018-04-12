@@ -31,7 +31,7 @@
   "devDependencies": {
     "@types/jest": "21.1.10",
     "jest": "21.2.1",
-    "prettier": "1.11.1",
+    "prettier": "1.12.0",
     "prettier-config-ikatyang": "1.1.1",
     "standard-version": "4.3.0",
     "ts-jest": "21.2.4",
