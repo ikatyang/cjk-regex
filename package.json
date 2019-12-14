@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "regexp-util": "^1.2.1",
-    "unicode-regex": "^2.0.0"
+    "unicode-regex": "^3.0.0"
   },
   "devDependencies": {
     "@types/jest": "21.1.10",
