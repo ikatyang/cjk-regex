@@ -29,8 +29,8 @@
     "unicode-regex": "^2.0.0"
   },
   "devDependencies": {
-    "@types/jest": "21.1.10",
-    "jest": "21.2.1",
+    "@types/jest": "24.9.0",
+    "jest": "24.9.0",
     "prettier": "1.18.2",
     "prettier-config-ikatyang": "1.1.1",
     "standard-version": "4.4.0",
