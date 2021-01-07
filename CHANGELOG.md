@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/ikatyang/cjk-regex/compare/v2.0.0...v2.0.1) (2021-01-07)
+
+
+### Bug Fixes
+
+* treat IDC as CJK punctuation ([#165](https://github.com/ikatyang/cjk-regex/issues/165)) ([a09c4b7](https://github.com/ikatyang/cjk-regex/commit/a09c4b7))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/ikatyang/cjk-regex/compare/v1.0.2...v2.0.0) (2018-03-22)
 
