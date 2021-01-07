@@ -18,6 +18,7 @@ const cjk_punctuations = unicode({
     'CJK_Compatibility_Forms',
     'Small_Form_Variants',
     'Halfwidth_And_Fullwidth_Forms',
+    'Ideographic_Description_Characters',
   ],
 }).subtract(cjk_letters);
 

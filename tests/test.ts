@@ -6,6 +6,7 @@ const test_cases: {
   '.': 'non-cjk',
   'a': 'non-cjk',
   '。': 'cjk-punctuation',
+  '⿱': 'cjk-punctuation',
   '中': 'cjk-letter',
   'ㄅ': 'cjk-letter',
   '𬉼': 'cjk-letter',
