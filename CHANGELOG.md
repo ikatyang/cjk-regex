@@ -1,6 +1,16 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+# [3.0.0](https://github.com/ikatyang/cjk-regex/compare/v2.0.1...v3.0.0) (2023-07-09)
+
+### Build System
+
+- update infra ([#183](https://github.com/ikatyang/cjk-regex/issues/183)) ([b89b15d](https://github.com/ikatyang/cjk-regex/commit/b89b15ded8f95d03e3ec4b9ada82c889f07e4608))
+
+### BREAKING CHANGES
+
+- this package is now pure ESM
 
 <a name="2.0.1"></a>
 
