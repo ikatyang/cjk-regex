@@ -1,7 +1,7 @@
-import { charset, Charset } from 'regexp-util';
-import unicode = require('unicode-regex');
+import { charset } from 'regexp-util'
+import unicode from 'unicode-regex'
 
-const cjk_letters = unicode({
+const cjkLetters = unicode({
   Script: ['Han', 'Katakana', 'Hiragana', 'Hangul', 'Bopomofo'],
   General_Category: [
     'Other_Letter',
@@ -9,9 +9,9 @@ const cjk_letters = unicode({
     'Other_Symbol',
     'Modifier_Letter',
   ],
-});
+})
 
-const cjk_punctuations = unicode({
+const cjkPunctuations = unicode({
   Block: [
     'CJK_Symbols_And_Punctuation',
     'Vertical_Forms',
@@ -20,19 +20,18 @@ const cjk_punctuations = unicode({
     'Halfwidth_And_Fullwidth_Forms',
     'Ideographic_Description_Characters',
   ],
-}).subtract(cjk_letters);
+}).subtract(cjkLetters)
 
-const cjk_all = charset(cjk_letters, cjk_punctuations);
+const cjkAll = charset(cjkLetters, cjkPunctuations)
 
-function cjk_regex() {
-  return charset(cjk_all);
+export function all() {
+  return charset(cjkAll)
 }
 
-declare namespace cjk_regex {
-  function letters(): Charset;
-  function punctuations(): Charset;
+export function letters() {
+  return charset(cjkLetters)
 }
-cjk_regex.letters = () => charset(cjk_letters);
-cjk_regex.punctuations = () => charset(cjk_punctuations);
 
-export = cjk_regex;
+export function punctuations() {
+  return charset(cjkPunctuations)
+}
