@@ -1,13 +1,13 @@
 {
   "name": "cjk-regex",
+  "type": "module",
   "version": "2.0.1",
   "description": "regular expression for matching CJK text",
   "keywords": [
     "cjk",
     "regular-expression"
   ],
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "exports": "./lib/index.js",
   "repository": "https://github.com/ikatyang/cjk-regex",
   "homepage": "https://github.com/ikatyang/cjk-regex#readme",
   "author": {
@@ -17,34 +17,30 @@
   },
   "license": "MIT",
   "scripts": {
-    "prepublish": "npm run build",
-    "lint": "tslint -p ./tsconfig.json --type-check",
-    "test": "jest",
-    "prebuild": "rm -rf ./lib",
+    "prepack": "pnpm run build",
+    "lint": "prettier --check .",
+    "test": "vitest",
     "build": "tsc -p ./tsconfig.build.json",
     "release": "standard-version"
   },
   "dependencies": {
-    "regexp-util": "^1.2.1",
-    "unicode-regex": "^2.0.0"
+    "regexp-util": "^2.0.0",
+    "unicode-regex": "^4.0.0"
   },
   "devDependencies": {
-    "@types/jest": "21.1.10",
-    "jest": "21.2.1",
-    "prettier": "1.18.2",
-    "prettier-config-ikatyang": "1.1.1",
-    "standard-version": "4.4.0",
-    "ts-jest": "21.2.4",
-    "tslint": "5.15.0",
-    "tslint-config-ikatyang": "2.5.1",
-    "tslint-config-prettier": "1.18.0",
-    "tslint-plugin-prettier": "2.0.1",
-    "typescript": "2.9.2"
+    "@vitest/coverage-v8": "0.33.0",
+    "prettier": "3.0.0",
+    "standard-version": "9.5.0",
+    "typescript": "5.1.6",
+    "vite": "4.4.2",
+    "vitest": "0.33.0"
   },
   "engines": {
-    "node": ">= 4"
+    "node": ">=16"
   },
   "files": [
-    "/lib/**/*"
-  ]
+    "/lib/**/*",
+    "/CHANGELOG.md"
+  ],
+  "packageManager": "pnpm@8.6.6"
 }
