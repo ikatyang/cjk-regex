@@ -4,7 +4,6 @@ import { test, expect } from 'vitest'
 type TestType = 'non-cjk' | 'cjk-letter' | 'cjk-punctuation'
 type TestCases = { [char: string]: TestType }
 
-
 // BMP
 const cjkRadicalsSupplement = '⻁⺪⻏'
 const kangxiRadicals = '⽒⽓⽔⽕'
@@ -50,15 +49,13 @@ const cjkUnifiedIdeographsExtensionG = '𰀀𰀁𱍀𱍊'
 const cjkUnifiedIdeographsExtensionH = '𱍐𱍑𲎬𲎭'
 const cjkCompatibilityIdeographsSupplement = '乁你鼻𪘀'
 
-
 const basicLatin = '.a'
-
 
 function casify(chars: string, t: TestType): TestCases {
   return Object.fromEntries(chars.split('').map(c => [c, t]))
 }
 
-const more_test_cases: TestCases = {
+const moreTestCases: TestCases = {
   ...casify(cjkRadicalsSupplement, 'cjk-letter'),
   ...casify(cjkSymbolsPunctuation, 'cjk-punctuation'),
   ...casify(alsoCjkSymbolsPunctuation, 'cjk-letter'),
@@ -66,14 +63,20 @@ const more_test_cases: TestCases = {
   ...casify(ideographicDescriptionCharacters, 'cjk-punctuation'),
   ...casify(hiragana + katakana, 'cjk-letter'),
   ...casify(katakanaPhoneticExtensions, 'cjk-letter'),
-  ...casify(bopomofo + bopomofoExtended + alsoBopomofoExtendedIntroducedInUnicode13, 'cjk-letter'),
+  ...casify(
+    bopomofo + bopomofoExtended + alsoBopomofoExtendedIntroducedInUnicode13,
+    'cjk-letter',
+  ),
   ...casify(
     hangulCompatibilityJamo + hangulJamoExtendedA + hangulJamoExtendedB,
     'cjk-letter',
   ),
   ...casify(hangulSyllables, 'cjk-letter'),
   ...casify(cjkCompatibility, 'cjk-letter'),
-  ...casify(cjkUnifiedIdeographsExtensionA + cjkUnifiedIdeographs, 'cjk-letter'),
+  ...casify(
+    cjkUnifiedIdeographsExtensionA + cjkUnifiedIdeographs,
+    'cjk-letter',
+  ),
   ...casify(cjkCompatibilityIdeographs, 'cjk-letter'),
   ...casify(
     cjkCompatibilityForms + smallFormVariants + halfwidthandFullwidthForms,
@@ -86,7 +89,7 @@ const more_test_cases: TestCases = {
   ...casify(basicLatin, 'non-cjk'),
 }
 
-const should_be_cjk_but_currently_not_matched: TestCases = {
+const shouldBeCjkButCurrentlyNotMatched: TestCases = {
   ...casify(kanbun, 'non-cjk'),
   ...casify(cjkStrokes, 'non-cjk'),
   ...casify(enclosedCjkLettersMonths, 'non-cjk'),
@@ -105,13 +108,13 @@ const should_be_cjk_but_currently_not_matched: TestCases = {
   ),
 }
 
-const test_cases: TestCases = {
-  ...more_test_cases,
-  ...should_be_cjk_but_currently_not_matched,
+const testCases: TestCases = {
+  ...moreTestCases,
+  ...shouldBeCjkButCurrentlyNotMatched,
 }
 
-Object.keys(test_cases).forEach(character => {
-  const category = test_cases[character]
+Object.keys(testCases).forEach(character => {
+  const category = testCases[character]
   const title = `"${character}" (0x${character
     .charCodeAt(0)
     .toString(16)}) is ${category}`
