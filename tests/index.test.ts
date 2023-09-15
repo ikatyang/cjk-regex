@@ -52,7 +52,7 @@ const cjkCompatibilityIdeographsSupplement = '乁你鼻𪘀'
 const basicLatin = '.a'
 
 function casify(chars: string, t: TestType): TestCases {
-  return Object.fromEntries(chars.split('').map(c => [c, t]))
+  return Object.fromEntries(chars.split(/(?:)/u).map(c => [c, t]))
 }
 
 const moreTestCases: TestCases = {
@@ -87,6 +87,18 @@ const moreTestCases: TestCases = {
   ...casify(nushu, 'non-cjk'),
   ...casify(khitanSmallScript, 'non-cjk'),
   ...casify(basicLatin, 'non-cjk'),
+  ...casify(cjkUnifiedIdeographsExtensionB, 'cjk-letter'),
+  ...casify(cjkUnifiedIdeographsExtensionC, 'cjk-letter'),
+  ...casify(cjkUnifiedIdeographsExtensionD, 'cjk-letter'),
+  ...casify(cjkUnifiedIdeographsExtensionE, 'cjk-letter'),
+  ...casify(cjkUnifiedIdeographsExtensionF, 'cjk-letter'),
+  ...casify(cjkUnifiedIdeographsExtensionG, 'cjk-letter'),
+  ...casify(cjkUnifiedIdeographsExtensionH, 'cjk-letter'),
+  ...casify(cjkCompatibilityIdeographsSupplement, 'cjk-letter'),
+  ...casify(
+    kanaExtendedA + kanaExtendedB + kanaSupplement + smallKanaExtension,
+    'cjk-letter',
+  ),
 }
 
 const shouldBeCjkButCurrentlyNotMatched: TestCases = {
@@ -94,18 +106,6 @@ const shouldBeCjkButCurrentlyNotMatched: TestCases = {
   ...casify(cjkStrokes, 'non-cjk'),
   ...casify(enclosedCjkLettersMonths, 'non-cjk'),
   ...casify(alsoCjkCompatibility, 'non-cjk'),
-  ...casify(cjkUnifiedIdeographsExtensionB, 'non-cjk'),
-  ...casify(cjkUnifiedIdeographsExtensionC, 'non-cjk'),
-  ...casify(cjkUnifiedIdeographsExtensionD, 'non-cjk'),
-  ...casify(cjkUnifiedIdeographsExtensionE, 'non-cjk'),
-  ...casify(cjkUnifiedIdeographsExtensionF, 'non-cjk'),
-  ...casify(cjkUnifiedIdeographsExtensionG, 'non-cjk'),
-  ...casify(cjkUnifiedIdeographsExtensionH, 'non-cjk'),
-  ...casify(cjkCompatibilityIdeographsSupplement, 'non-cjk'),
-  ...casify(
-    kanaExtendedA + kanaExtendedB + kanaSupplement + smallKanaExtension,
-    'non-cjk',
-  ),
 }
 
 const testCases: TestCases = {
@@ -116,24 +116,24 @@ const testCases: TestCases = {
 Object.keys(testCases).forEach(character => {
   const category = testCases[character]
   const title = `"${character}" (0x${character
-    .charCodeAt(0)
+    .codePointAt(0)!
     .toString(16)}) is ${category}`
   test(title, () => {
     switch (category) {
       case 'non-cjk':
-        expect(character).not.toMatch(cjk.all().toRegExp())
-        expect(character).not.toMatch(cjk.letters().toRegExp())
-        expect(character).not.toMatch(cjk.punctuations().toRegExp())
+        expect(character).not.toMatch(cjk.all().toRegExp('u'))
+        expect(character).not.toMatch(cjk.letters().toRegExp('u'))
+        expect(character).not.toMatch(cjk.punctuations().toRegExp('u'))
         break
       case 'cjk-letter':
-        expect(character).toMatch(cjk.all().toRegExp())
-        expect(character).toMatch(cjk.letters().toRegExp())
-        expect(character).not.toMatch(cjk.punctuations().toRegExp())
+        expect(character).toMatch(cjk.all().toRegExp('u'))
+        expect(character).toMatch(cjk.letters().toRegExp('u'))
+        expect(character).not.toMatch(cjk.punctuations().toRegExp('u'))
         break
       case 'cjk-punctuation':
-        expect(character).toMatch(cjk.all().toRegExp())
-        expect(character).not.toMatch(cjk.letters().toRegExp())
-        expect(character).toMatch(cjk.punctuations().toRegExp())
+        expect(character).toMatch(cjk.all().toRegExp('u'))
+        expect(character).not.toMatch(cjk.letters().toRegExp('u'))
+        expect(character).toMatch(cjk.punctuations().toRegExp('u'))
         break
       default:
         throw new Error(`Unexpected category "${category}"`)
