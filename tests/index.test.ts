@@ -15,8 +15,7 @@ const katakana = 'ハヒヘホ'
 const bopomofo = 'ㄅㄬㄭㄮㄯ'
 const hangulCompatibilityJamo = 'ㅂㅵㅶㅷㅸ'
 const kanbun = '㆐㆑㆒㆓'
-const bopomofoExtended = 'ㆠㆡ'
-const alsoBopomofoExtendedIntroducedInUnicode13 = 'ㆾㆿ'
+const bopomofoExtended = 'ㆠㆡㆾㆿ'
 const cjkStrokes = '㇀㇁㇂㇃㇄㇅㇆㇇㇈㇉㇊㇢㇣'
 const katakanaPhoneticExtensions = 'ㇼㇽㇾㇿ'
 const enclosedCjkLettersMonths = '㈱㋋㋌㋿'
@@ -55,7 +54,7 @@ function casify(chars: string, t: TestType): TestCases {
   return Object.fromEntries(chars.split(/(?:)/u).map(c => [c, t]))
 }
 
-const moreTestCases: TestCases = {
+const testCases: TestCases = {
   ...casify(cjkRadicalsSupplement, 'cjk-letter'),
   ...casify(cjkSymbolsPunctuation, 'cjk-punctuation'),
   ...casify(alsoCjkSymbolsPunctuation, 'cjk-letter'),
@@ -63,8 +62,10 @@ const moreTestCases: TestCases = {
   ...casify(ideographicDescriptionCharacters, 'cjk-punctuation'),
   ...casify(hiragana + katakana, 'cjk-letter'),
   ...casify(katakanaPhoneticExtensions, 'cjk-letter'),
+  ...casify(enclosedCjkLettersMonths, 'cjk-punctuation'),
+  ...casify(cjkStrokes, 'cjk-punctuation'),
   ...casify(
-    bopomofo + bopomofoExtended + alsoBopomofoExtendedIntroducedInUnicode13,
+    bopomofo + bopomofoExtended,
     'cjk-letter',
   ),
   ...casify(
@@ -72,7 +73,9 @@ const moreTestCases: TestCases = {
     'cjk-letter',
   ),
   ...casify(hangulSyllables, 'cjk-letter'),
+  ...casify(kanbun, 'cjk-punctuation'),
   ...casify(cjkCompatibility, 'cjk-letter'),
+  ...casify(alsoCjkCompatibility, 'cjk-punctuation'),
   ...casify(
     cjkUnifiedIdeographsExtensionA + cjkUnifiedIdeographs,
     'cjk-letter',
@@ -99,18 +102,6 @@ const moreTestCases: TestCases = {
     kanaExtendedA + kanaExtendedB + kanaSupplement + smallKanaExtension,
     'cjk-letter',
   ),
-}
-
-const shouldBeCjkButCurrentlyNotMatched: TestCases = {
-  ...casify(kanbun, 'non-cjk'),
-  ...casify(cjkStrokes, 'non-cjk'),
-  ...casify(enclosedCjkLettersMonths, 'non-cjk'),
-  ...casify(alsoCjkCompatibility, 'non-cjk'),
-}
-
-const testCases: TestCases = {
-  ...moreTestCases,
-  ...shouldBeCjkButCurrentlyNotMatched,
 }
 
 Object.keys(testCases).forEach(character => {
