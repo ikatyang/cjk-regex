@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.1.0](https://github.com/ikatyang/cjk-regex/compare/v3.0.0...v3.1.0) (2023-10-21)
+
+### Features
+
+- recognize more CJK punctuations ([#178](https://github.com/ikatyang/cjk-regex/issues/178)) ([547c31a](https://github.com/ikatyang/cjk-regex/commit/547c31a2ec00fb36dfa7c7ed0b1cbf51bb097eb0))
+
 # [3.0.0](https://github.com/ikatyang/cjk-regex/compare/v2.0.1...v3.0.0) (2023-07-09)
 
 ### Build System
