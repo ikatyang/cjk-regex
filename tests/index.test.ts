@@ -64,10 +64,7 @@ const testCases: TestCases = {
   ...casify(katakanaPhoneticExtensions, 'cjk-letter'),
   ...casify(enclosedCjkLettersMonths, 'cjk-punctuation'),
   ...casify(cjkStrokes, 'cjk-punctuation'),
-  ...casify(
-    bopomofo + bopomofoExtended,
-    'cjk-letter',
-  ),
+  ...casify(bopomofo + bopomofoExtended, 'cjk-letter'),
   ...casify(
     hangulCompatibilityJamo + hangulJamoExtendedA + hangulJamoExtendedB,
     'cjk-letter',

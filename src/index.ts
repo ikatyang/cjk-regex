@@ -22,7 +22,7 @@ const cjkPunctuations = unicode({
     'Ideographic_Description_Characters',
     'Kanbun',
     'CJK_Strokes',
-    'Enclosed_CJK_Letters_And_Months'
+    'Enclosed_CJK_Letters_And_Months',
   ],
 }).subtract(cjkLetters)
 
