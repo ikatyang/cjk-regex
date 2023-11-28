@@ -8,6 +8,7 @@
     "regular-expression"
   ],
   "exports": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "repository": "https://github.com/ikatyang/cjk-regex",
   "homepage": "https://github.com/ikatyang/cjk-regex#readme",
   "author": {
