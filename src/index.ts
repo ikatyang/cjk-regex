@@ -23,6 +23,7 @@ const cjkPunctuations = unicode({
     'Kanbun',
     'CJK_Strokes',
     'Enclosed_CJK_Letters_And_Months',
+    'Katakana',
   ],
 }).subtract(cjkLetters)
 
