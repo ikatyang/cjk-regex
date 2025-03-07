@@ -7,7 +7,10 @@
     "cjk",
     "regular-expression"
   ],
-  "exports": "./lib/index.js",
+  "exports": {
+    "types": "./lib/index.d.ts",
+    "default": "./lib/index.js"
+  },
   "repository": "https://github.com/ikatyang/cjk-regex",
   "homepage": "https://github.com/ikatyang/cjk-regex#readme",
   "author": {
