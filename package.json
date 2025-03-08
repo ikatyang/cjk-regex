@@ -11,8 +11,8 @@
     "types": "./lib/index.d.ts",
     "default": "./lib/index.js"
   },
-  "repository": "https://github.com/ikatyang/cjk-regex",
-  "homepage": "https://github.com/ikatyang/cjk-regex#readme",
+  "repository": "https://github.com/ikatyang-collab/cjk-regex",
+  "homepage": "https://github.com/ikatyang-collab/cjk-regex#readme",
   "author": {
     "name": "Ika",
     "email": "ikatyang@gmail.com",
